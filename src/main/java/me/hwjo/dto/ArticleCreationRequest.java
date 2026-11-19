@@ -1,20 +1,19 @@
 package me.hwjo.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 import me.hwjo.dao.Article;
 
 @Getter
-@Setter
-public class AddArticleRequest {
-
+@AllArgsConstructor
+public class ArticleCreationRequest {
     private String title;
     private String content;
 
     public Article toEntity() {
         return Article.builder()
-                .title(title)
-                .content(content)
+                .title(this.title)
+                .content(this.content)
                 .build();
     }
 }
