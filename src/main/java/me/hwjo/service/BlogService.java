@@ -17,29 +17,24 @@ public class BlogService {
 
     private final BlogRepository blogRepository;
 
-    // 블로그 글 생성
-    public Article save(ArticleCreationRequest articleCreationRequest) {
-        return blogRepository.save(articleCreationRequest.toEntity());
+    public Article save(ArticleCreationRequest request) {
+        return blogRepository.save(request.toEntity());
     }
 
-    // 전체 블로그 글 조회
     public List<Article> findAll() {
         return blogRepository.findAll();
     }
 
-    // 특정 ID로 블로그 글 조회
     public Article getById(Long id) {
         return blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "해당 글이 존재하지 않습니다. id: " + id));
     }
 
-    // 블로그 글 삭제
     public void deleteById(Long id) {
         blogRepository.deleteById(id);
     }
 
-    // 블로그 글 수정
     @Transactional
     public Article updateArticle(Long id, ArticleUpdateRequest request) {
         Article article = blogRepository.findById(id)

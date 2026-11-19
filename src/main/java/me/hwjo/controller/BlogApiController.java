@@ -19,17 +19,15 @@ public class BlogApiController {
 
     private final BlogService blogService;
 
-    // 1. 블로그 글 생성 API
     @PostMapping("/api/articles")
     public ResponseEntity<Article> addArticle(
-            @RequestBody ArticleCreationRequest articleCreationRequest) {
+            @RequestBody ArticleCreationRequest request) {
 
-        Article savedArticle = blogService.save(articleCreationRequest);
+        Article savedArticle = blogService.save(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedArticle);
     }
 
-    // 2. 전체 블로그 글 목록 조회 API
     @GetMapping("/api/articles")
     public ResponseEntity<List<ArticleResponse>> getAllArticles() {
 
@@ -41,7 +39,6 @@ public class BlogApiController {
         return ResponseEntity.ok().body(articleResponseList);
     }
 
-    // 3. 특정 ID의 블로그 글 조회 API
     @GetMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> getById(
             @PathVariable Long id) {
@@ -52,7 +49,6 @@ public class BlogApiController {
                 .body(new ArticleResponse(article));
     }
 
-    // 4. 블로그 글 삭제 API
     @DeleteMapping("/api/articles/{id}")
     public ResponseEntity<Void> deleteArticle(
             @PathVariable Long id) {
@@ -62,7 +58,6 @@ public class BlogApiController {
         return ResponseEntity.ok().build();
     }
 
-    // 5. 블로그 글 수정 API
     @PutMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> updateArticle(
             @PathVariable Long id,
@@ -70,8 +65,8 @@ public class BlogApiController {
 
         Article article = blogService.updateArticle(id, request);
 
-        ArticleResponse articleResponse = new ArticleResponse(article);
+        ArticleResponse response = new ArticleResponse(article);
 
-        return ResponseEntity.ok().body(articleResponse);
+        return ResponseEntity.ok().body(response);
     }
 }
