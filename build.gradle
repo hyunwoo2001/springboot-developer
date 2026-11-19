@@ -33,8 +33,10 @@ dependencies {
     // H2 Database
     runtimeOnly 'com.h2database:h2'
 
-    // Spring Boot Test
+    // Spring Boot Test (JUnit 5, AssertJ 포함)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // JUnit Platform
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // Test Lombok
@@ -42,11 +44,7 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
-test {
+// 테스트 실행 설정
+tasks.named('test') {
     useJUnitPlatform()
-
-    dependencies {
-        compileOnly 'org.projectlombok:lombok'
-        annotationProcessor 'org.projectlombok:lombok'
-    }
 }

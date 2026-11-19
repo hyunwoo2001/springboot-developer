@@ -1,4 +1,4 @@
-package me.hwjo;
+package me.hwjo.springbootdeveloper;
 
 public class Calculator {
 
