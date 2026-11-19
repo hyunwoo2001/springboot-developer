@@ -1,4 +1,4 @@
-package me.hwjo.domain;
+package me.hwjo.dao;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

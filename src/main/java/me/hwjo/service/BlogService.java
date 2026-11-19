@@ -1,7 +1,7 @@
 package me.hwjo.service;
 
 import lombok.RequiredArgsConstructor;
-import me.hwjo.domain.Article;
+import me.hwjo.dao.Article;
 import me.hwjo.dto.AddArticleRequest;
 import me.hwjo.repository.BlogRepository;
 import org.springframework.stereotype.Service;

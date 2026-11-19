@@ -2,7 +2,7 @@ package me.hwjo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.hwjo.domain.Article;
+import me.hwjo.dao.Article;
 
 @Getter
 @Setter

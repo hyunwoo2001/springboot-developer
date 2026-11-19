@@ -2,7 +2,7 @@
 package me.hwjo.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.hwjo.domain.Article;
+import me.hwjo.dao.Article;
 import me.hwjo.dto.AddArticleRequest;
 import me.hwjo.dto.ArticleResponse;
 import me.hwjo.service.BlogService;

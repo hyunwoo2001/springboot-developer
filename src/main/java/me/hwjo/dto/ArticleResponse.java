@@ -1,7 +1,7 @@
 package me.hwjo.dto;
 
 import lombok.Getter;
-import me.hwjo.domain.Article;
+import me.hwjo.dao.Article;
 
 @Getter
 public class ArticleResponse {
