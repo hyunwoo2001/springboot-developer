@@ -1,3 +1,4 @@
+
 package me.hwjo.service;
 
 import jakarta.transaction.Transactional;
@@ -42,9 +43,11 @@ public class BlogService {
     @Transactional
     public Article updateArticle(Long id, ArticleUpdateRequest request) {
         Article article = blogRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "not found : " + id));
 
         article.update(request.getTitle(), request.getContent());
+
         return article;
     }
 }

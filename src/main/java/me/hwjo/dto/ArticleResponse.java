@@ -1,3 +1,4 @@
+
 package me.hwjo.dto;
 
 import lombok.Getter;
@@ -5,6 +6,7 @@ import me.hwjo.dao.Article;
 
 @Getter
 public class ArticleResponse {
+
     private final String title;
     private final String content;
 

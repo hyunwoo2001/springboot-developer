@@ -1,3 +1,4 @@
+
 package me.hwjo.dao;
 
 import jakarta.persistence.*;
@@ -10,10 +11,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
-    private Long id; // PK
+    private Long id;
 
     @Column(name = "title", nullable = false)
     private String title;
