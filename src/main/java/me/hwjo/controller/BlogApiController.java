@@ -19,45 +19,40 @@ public class BlogApiController {
 
     private final BlogService blogService;
 
+    // 1. 블로그 글 생성
     @PostMapping("/api/articles")
     public ResponseEntity<Article> addArticle(
             @RequestBody ArticleCreationRequest request) {
 
         Article savedArticle = blogService.save(request);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedArticle);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(savedArticle);
     }
 
+    // 2. 전체 블로그 글 조회
     @GetMapping("/api/articles")
-    public ResponseEntity<List<ArticleResponse>> getAllArticles() {
+    public ResponseEntity<List<ArticleResponse>> findAllArticles() {
 
-        List<ArticleResponse> articleResponseList =
-                blogService.findAll().stream()
-                        .map(ArticleResponse::new)
-                        .toList();
+        List<ArticleResponse> articles = blogService.findAll()
+                .stream()
+                .map(ArticleResponse::new)
+                .toList();
 
-        return ResponseEntity.ok().body(articleResponseList);
+        return ResponseEntity.ok(articles);
     }
 
+    // 3. 특정 블로그 글 조회
     @GetMapping("/api/articles/{id}")
-    public ResponseEntity<ArticleResponse> getById(
+    public ResponseEntity<ArticleResponse> findArticle(
             @PathVariable Long id) {
 
         Article article = blogService.getById(id);
 
-        return ResponseEntity.ok()
-                .body(new ArticleResponse(article));
+        return ResponseEntity.ok(new ArticleResponse(article));
     }
 
-    @DeleteMapping("/api/articles/{id}")
-    public ResponseEntity<Void> deleteArticle(
-            @PathVariable Long id) {
-
-        blogService.deleteById(id);
-
-        return ResponseEntity.ok().build();
-    }
-
+    // 4. 블로그 글 수정
     @PutMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> updateArticle(
             @PathVariable Long id,
@@ -65,8 +60,16 @@ public class BlogApiController {
 
         Article article = blogService.updateArticle(id, request);
 
-        ArticleResponse response = new ArticleResponse(article);
+        return ResponseEntity.ok(new ArticleResponse(article));
+    }
 
-        return ResponseEntity.ok().body(response);
+    // 5. 블로그 글 삭제
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Void> deleteArticle(
+            @PathVariable Long id) {
+
+        blogService.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
 }
